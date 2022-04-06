@@ -14529,239 +14529,52 @@ all of MD as it is not optimized for dense, information rich UIs.
    <div class="jp-InputPrompt jp-InputArea-prompt">
    </div>
    <div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-    <h1 id="Writing-Assignment">
-     Writing Assignment
-     <a class="anchor-link" href="#Writing-Assignment">
-      ¶
-     </a>
-    </h1>
-    <h2 id="CS328-2022">
-     CS328 2022
-     <a class="anchor-link" href="#CS328-2022">
-      ¶
-     </a>
-    </h2>
-   </div>
-  </div>
-  <div class="jp-Cell-inputWrapper">
-   <div class="jp-InputPrompt jp-InputArea-prompt">
-   </div>
-   <div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-    <h3 id="Contributing">
-     Contributing
-     <a class="anchor-link" href="#Contributing">
-      ¶
-     </a>
-    </h3>
-    <ul>
-     <li>
-      For the writing-assignment, the changes need to be made in
-      <code>
-       _notebooks/index.ipynb
-      </code>
-      .
-     </li>
-     <li>
-      Other notebooks will not be evaluated.
-     </li>
-     <li>
-      Students are free to create and edit new notebooks to try and test features on the HTML outputs.
-     </li>
-     <li>
-      Data Files (CSV, json, etc.) needs to be placed in
-      <code>
-       _notebooks/data
-      </code>
-      directory. All asset files (images, gif) need to be placed in
-      <code>
-       _notebooks/assets
-      </code>
-      directory.
-     </li>
-     <li>
-      As a good practive, the large files in data directory should be in compressed format (gzip compression, etc).
-     </li>
-    </ul>
-   </div>
-  </div>
-  <div class="jp-Cell-inputWrapper">
-   <div class="jp-InputPrompt jp-InputArea-prompt">
-   </div>
-   <div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-    <h3 id="Building-HTML-output-on-local-system">
-     Building HTML output on local system
-     <a class="anchor-link" href="#Building-HTML-output-on-local-system">
-      ¶
-     </a>
-    </h3>
-    <ol>
-     <li>
-      Install the python dependencies with
-      <code>
-       pip install -r requirements.txt
-      </code>
-      .
-     </li>
-     <li>
-      <p>
-       Convert all notebooks in
-       <code>
-        _notebooks
-       </code>
-       folder to HTML using
-      </p>
-      <div class="highlight">
-       <pre><span></span>jupyter nbconvert _notebooks/*.ipynb --to html --output-dir<span class="o">=</span>_html --HTMLExporter.theme<span class="o">=</span>dark
- chmod +x utils/process_html.sh
- utils/process_html.sh
-</pre>
-      </div>
-      <p>
-       <strong>
-        Note1:
-       </strong>
-       The bash script
-       <code>
-        process_html.sh
-       </code>
-       inserts link to
-       <code>
-        _html/style.css
-       </code>
-       in each generated HTML output file. So the CSS file
-       <code>
-        _html/style.css
-       </code>
-       won't work without running this command on each build.
-       <br/>
-       <strong>
-        Note2:
-       </strong>
-       For light-theme remove
-       <code>
-        --HTMLExporter.theme=dark
-       </code>
-       from the first command. For light theme in build, remove
-       <code>
-        --HTMLExporter.theme=dark
-       </code>
-       from line
-       <code>
-        29
-       </code>
-       in
-       <code>
-        .github/workflows/deploy.yml
-       </code>
-       .
-      </p>
-     </li>
-     <li>
-      <p>
-       The output HTML files would be stored in folder
-       <code>
-        _html
-       </code>
-       .
-      </p>
-     </li>
-     <li>
-      To change the styling of the html files, edit
-      <code>
-       _html/style.css
-      </code>
-      . This CSS is applied to all of the notebooks.
-     </li>
-    </ol>
-   </div>
-  </div>
-  <div class="jp-Cell-inputWrapper">
-   <div class="jp-InputPrompt jp-InputArea-prompt">
-   </div>
-   <div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-    <h3 id="Hosting-on-Netlify">
-     Hosting on
-     <a href="https://www.netlify.com/">
-      Netlify
-     </a>
-     <a class="anchor-link" href="#Hosting-on-Netlify">
-      ¶
-     </a>
-    </h3>
-    <ul>
-     <li>
-      <strong>
-       The repository need to be kept private
-      </strong>
-      .
-     </li>
-     <li>
-      As GitHub pages requires pro account for hosting private repositories, the websites need to be hosted on Netlify.
-     </li>
-     <li>
-      On every
-      <code>
-       push
-      </code>
-      to the repository, the HTML output is generated and pushed to the
-      <code>
-       gh-pages
-      </code>
-      branch of the repository via Github actions.
-      <strong>
-       Note:
-      </strong>
-      : Sometimes the github actions are not triggered in forked or generated from template repositories. To overcome this, make a tiny non-significant change to
-      <code>
-       .github/workflows/deploy.yml
-      </code>
-      such as adding new-line at the end of file or changing the name of github action in line
-      <code>
-       1
-      </code>
-      of
-      <code>
-       .github/workflows/deploy.yml
-      </code>
-      and push the new changes. This should solve the problem and github actions should be triggered normally on every push from now on. Doing this once is enough.
-     </li>
-     <li>
-      Deploy the github repository on Netlify following this
-      <a href="https://www.netlify.com/blog/2016/09/29/a-step-by-step-guide-deploying-on-netlify/">
-       guide
-      </a>
-      .
-     </li>
-     <li>
-      Make sure to choose deploy/production branch as
-      <code>
-       gh-pages
-      </code>
-      and not
-      <code>
-       main
-      </code>
-      branch.
-     </li>
-     <li>
-      Give an appropriate sitename in the site settings.
-     </li>
-     <li>
-      Finally the website link would look like
-      <code>
-       https://&lt;site_name&gt;.netlify.app
-      </code>
-     </li>
-     <li>
-      Update the Netlify links in the
-      <code>
-       README.md
-      </code>
-      with your website links.
-     </li>
-    </ul>
     <p>
-     Once this is done, all changes to github repository should reflect on the netlify website within few minutes after each push.
+    </p>
+    <h1>
+     <center>
+      Topic Name
+     </center>
+    </h1>
+    <h4>
+     <center>
+      <a href="https://author1.github.io/" style="text-decoration:none">
+       Binita Maity
+      </a>
+      , IIT Gandhinagar,
+      <a href="mailto:&lt;author1&gt;@iitgn.ac.in" style="text-decoration:none">
+       author1@iitgn.ac.in
+      </a>
+      <br/>
+      <br/>
+      <a href="https://author2.github.io/" style="text-decoration:none">
+       Sai Narasimha
+      </a>
+      , IIT Gandhinagar,
+      <a href="mailto:&lt;author2&gt;@iitgn.ac.in" style="text-decoration:none">
+       author2@iitgn.ac.in
+      </a>
+      <br/>
+      <br/>
+      <a href="https://author3.github.io/" style="text-decoration:none">
+       G V Sai kumar
+      </a>
+      , IIT Gandhinagar,
+      <a href="mailto:&lt;author3&gt;@iitgn.ac.in" style="text-decoration:none">
+       author3@iitgn.ac.in
+      </a>
+     </center>
+    </h4>
+   </div>
+  </div>
+  <div class="jp-Cell-inputWrapper">
+   <div class="jp-InputPrompt jp-InputArea-prompt">
+   </div>
+   <div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+    <p>
+     <a href="https://github.com/&lt;repo_user&gt;/&lt;repo_name&gt;">
+      <img alt="Repo" src="https://img.shields.io/badge/GitHub-&lt;repo_name&gt;-brightgreen"/>
+     </a>
     </p>
    </div>
   </div>
@@ -14769,70 +14582,44 @@ all of MD as it is not optimized for dense, information rich UIs.
    <div class="jp-InputPrompt jp-InputArea-prompt">
    </div>
    <div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-    <h3 id="Interactive-Notebooks">
-     Interactive Notebooks
-     <a class="anchor-link" href="#Interactive-Notebooks">
-      ¶
-     </a>
-    </h3>
-    <ul>
-     <li>
-      <strong>
-       Bonus marks for making the notebooks interactive
-      </strong>
-     </li>
-     <li>
-      <a href="https://plotly.com/python/">
-       Plotly
-      </a>
-      is recommended for adding interactive visualizations.
-     </li>
-     <li>
-      Matplotlib animations are also recommended for making notebooks interactive.
-     </li>
-     <li>
-      Maplotlib animations are not rendered in HTML by default. It needs to be enabled in the notebook by the following snippet:
-      <div class="highlight">
-       <pre><span></span><span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">rc</span>
-<span class="n">rc</span><span class="p">(</span><span class="s1">'animation'</span><span class="p">,</span> <span class="n">html</span><span class="o">=</span><span class="s1">'jshtml'</span><span class="p">)</span>
+    <p>
+     print(hello)
+    </p>
+   </div>
+  </div>
+  <div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+   <div class="jp-Cell-inputWrapper">
+    <div class="jp-InputArea jp-Cell-inputArea">
+     <div class="jp-InputPrompt jp-InputArea-prompt">
+      In [2]:
+     </div>
+     <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+      <div class="CodeMirror cm-s-jupyter">
+       <div class="highlight hl-ipython3">
+        <pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">"hello"</span><span class="p">)</span>
+</pre>
+       </div>
+      </div>
+     </div>
+    </div>
+   </div>
+   <div class="jp-Cell-outputWrapper">
+    <div class="jp-OutputArea jp-Cell-outputArea">
+     <div class="jp-OutputArea-child">
+      <div class="jp-OutputPrompt jp-OutputArea-prompt">
+      </div>
+      <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+       <pre>hello
 </pre>
       </div>
-     </li>
-    </ul>
+     </div>
+    </div>
    </div>
   </div>
   <div class="jp-Cell-inputWrapper">
    <div class="jp-InputPrompt jp-InputArea-prompt">
    </div>
    <div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-    <h3 id="What-would-be-considered-in-evaluation?">
-     What would be considered in evaluation?
-     <a class="anchor-link" href="#What-would-be-considered-in-evaluation?">
-      ¶
-     </a>
-    </h3>
-    <ol>
-     <li>
-      Link to the Netlify website (put the website links in README file)
-     </li>
-     <li>
-      From the code repository:
-      <ul>
-       <li>
-        <code>
-         index.html
-        </code>
-        in the gh-pages brach
-       </li>
-       <li>
-        <code>
-         index.ipynb
-        </code>
-        in the main branch
-       </li>
-      </ul>
-     </li>
-    </ol>
    </div>
   </div>
  </body>
