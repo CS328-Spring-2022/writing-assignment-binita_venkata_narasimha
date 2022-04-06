@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-name: Deploy
-=======
 name: Deploy2
->>>>>>> upstream/main
 
 on:
   push:
