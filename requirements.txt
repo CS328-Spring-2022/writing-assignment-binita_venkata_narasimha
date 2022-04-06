@@ -1,3 +1,8 @@
 nbconvert==6.3.0
 jupyter-contrib-nbextensions==0.5.1
+<<<<<<< HEAD
 beautifulsoup4==4.10.0
+=======
+beautifulsoup4==4.10.0
+jinja2==3.0.3
+>>>>>>> upstream/main
